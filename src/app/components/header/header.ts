@@ -5,9 +5,12 @@ import { RouterModule } from '@angular/router';
   selector: 'app-header',
   imports: [RouterModule],
   templateUrl: './header.html',
-  styleUrl: './header.css',
+  styleUrls: ['./header.css'],
 })
-
 export class Header {
+  navOpen = false;
 
+  toggleNav() {
+    this.navOpen = !this.navOpen;
+  }
 }
