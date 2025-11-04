@@ -41,3 +41,8 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Ignore server/SSR build entrypoints that are not needed for GitHub Pages
+src/main.server.ts
+src/server.ts
+src/app/*.server.ts
