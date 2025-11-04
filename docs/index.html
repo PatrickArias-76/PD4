@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Demo - Sabores del Perú</title>
+  <style>
+    body{font-family:system-ui, -apple-system, 'Segoe UI', Roboto, Arial; margin:0; color:#222}
+    .site-header{background:#f7f2ea;padding:16px 12px;border-bottom:1px solid #eee}
+    .site-header .brand{margin:0;font-size:1.4rem}
+    main{padding:24px}
+    .carousel{max-width:900px;margin:0 auto;border-radius:10px;overflow:hidden;background:#fff;box-shadow:0 6px 18px rgba(0,0,0,0.08)}
+    .slides img{width:100%;display:block}
+    .nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.45);color:#fff;border:0;width:38px;height:56px;font-size:28px;cursor:pointer}
+    .nav.prev{left:8px;border-radius:6px}
+    .nav.next{right:8px;border-radius:6px}
+    .caption{padding:10px;font-weight:600;color:#222;text-align:center}
+    .dots{text-align:center;padding:10px 0}
+    .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin:0 6px;background:#ddd}
+    .dot.active{background:#333}
+    .footer{background:#222;color:#fff;text-align:center;padding:18px 12px;margin-top:40px}
+    .footer .credits{color:#ddd}
+  </style>
+</head>
+<body>
+  <header class="site-header"><h1 class="brand">Sabores del Perú</h1></header>
+  <main>
+    <h2 style="text-align:center">Sabores del Perú</h2>
+    <p style="text-align:center;color:#555">Disfruta un pequeño carrusel con Lomo Saltado, Ceviche y Arroz Chaufa.</p>
+
+    <div style="position:relative;margin-top:12px;">
+      <button class="nav prev" id="prev">‹</button>
+      <div class="carousel">
+        <div class="slides">
+          <div class="slide"><img src="https://source.unsplash.com/1200x800/?lomo-saltado,peru" alt="Lomo Saltado"><div class="caption">Lomo Saltado</div></div>
+          <div class="slide"><img src="https://source.unsplash.com/1200x800/?ceviche,peru" alt="Ceviche"><div class="caption">Ceviche</div></div>
+          <div class="slide"><img src="https://source.unsplash.com/1200x800/?chaufa,peru" alt="Arroz Chaufa"><div class="caption">Arroz Chaufa</div></div>
+        </div>
+      </div>
+      <button class="nav next" id="next">›</button>
+    </div>
+    <div class="dots" id="dots"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <p class="slogan">🍽️ La comida peruana no solo se come… se disfruta.</p>
+      <p class="credits">© 2025 Sabores del Perú — Lomo Saltado · Ceviche · Arroz Chaufa</p>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      const slides = Array.from(document.querySelectorAll('.slides .slide'));
+      const dotsEl = document.getElementById('dots');
+      let idx = 0;
+      function show(i){ slides.forEach((s,k)=> s.style.display = k===i ? 'block' : 'none'); updateDots(i); }
+      function makeDots(){ slides.forEach((_,i)=>{ const b = document.createElement('button'); b.className='dot'; b.addEventListener('click', ()=>{ idx=i; show(idx); }); dotsEl.appendChild(b); }); }
+      function updateDots(i){ Array.from(dotsEl.children).forEach((d,k)=> d.classList.toggle('active', k===i)); }
+      document.getElementById('prev').addEventListener('click', ()=>{ idx = (idx-1+slides.length)%slides.length; show(idx); });
+      document.getElementById('next').addEventListener('click', ()=>{ idx = (idx+1)%slides.length; show(idx); });
+      makeDots(); show(0); setInterval(()=>{ idx=(idx+1)%slides.length; show(idx); },5000);
+    })();
+  </script>
+</body>
+</html>
