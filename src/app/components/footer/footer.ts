@@ -2,7 +2,8 @@
 
 @Component({
   selector: 'app-footer',
+  standalone: true,
   templateUrl: './footer.html',
-  styleUrl: './footer.styles.css',
+  styleUrls: ['./footer.styles.css'],
 })
 export class Footer {}

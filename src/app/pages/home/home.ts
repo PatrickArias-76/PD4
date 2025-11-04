@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
+  standalone: true,
   templateUrl: './home.html',
-  styleUrl: './home.css',
+  styleUrls: ['./home.css'],
   imports: [CommonModule],
 })
 export class Home {
