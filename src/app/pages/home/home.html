@@ -1,0 +1,26 @@
+<section class="home-container">
+	<h2>Sabores del Perú</h2>
+	<p class="lead">Disfruta un pequeño carrusel con tres platos clásicos: Lomo Saltado, Ceviche y Arroz Chaufa.</p>
+
+	<div class="carousel">
+		<button class="nav prev" (click)="prev()">‹</button>
+
+		<div class="slides">
+			<div class="slide" *ngFor="let s of slides; let i = index">
+				<div *ngIf="current === i">
+					<img [src]="s.src" [alt]="s.title" />
+					<div class="caption">{{ s.title }}</div>
+					<div class="placeholder" *ngIf="!s.src">Imagen {{ s.title }} (coloca en public/imagen/)</div>
+				</div>
+			</div>
+		</div>
+
+		<button class="nav next" (click)="next()">›</button>
+		<div class="dots">
+			<button class="dot" *ngFor="let _ of slides; let i = index" [class.active]="i===current" (click)="go(i)"></button>
+		</div>
+	</div>
+
+	<p class="note">Si no tienes las imágenes locales, coloca los archivos en <code>public/imagen/</code> o ajusta las rutas en el componente.</p>
+</section>
+
